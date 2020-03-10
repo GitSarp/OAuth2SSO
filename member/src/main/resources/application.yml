@@ -1,0 +1,25 @@
+auth-server: http://localhost:8081/auth
+server:
+  port: 8083
+#  servlet:
+#    context-path: /member
+  session:
+    cookie:
+      name: UISESSIONMEMBER
+security:
+#  basic:
+#    enabled: false
+  oauth2:
+    client:
+      clientId: MemberSystem
+      clientSecret: 1234
+      accessTokenUri: ${auth-server}/oauth/token
+      userAuthorizationUri: ${auth-server}/oauth/authorize
+    resource:
+      userInfoUri: ${auth-server}/user/me
+spring:
+  thymeleaf:
+    cache: false
+  #scopedTarget.oauth2ClientContext ´íÎó
+  main:
+    allow-bean-definition-overriding: true

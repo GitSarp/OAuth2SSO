@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+</head>
+<body>
+
+<h1>Secured Page</h1>
+<!--    th:text="${#authentication.name}"-->
+    Welcome, <span sec:authentication="name"></span>
+
+    <div>
+        <button onClick="logout()" class="btn btn-primary">Logout</button>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script type="application/javascript">
+        var logout = function() {
+            //todo 应该要传token信息，否则还会认证服务器要求登录
+            $.post("/ui/logout", function() {
+                // $("#user").html('');
+                // $(".unauthenticated").show();
+                // $(".authenticated").hide();
+            })
+            return true;
+        }
+    </script>
+</body>
+</html>
